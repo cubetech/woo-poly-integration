@@ -129,7 +129,6 @@ class Plugin
             $woocommerce = true;
         }
         
-        
         return  ($polylang && Utilities::polylangVersionCheck(self::POLYLANG_VERSION)) &&
                 ($woocommerce && Utilities::woocommerceVersionCheck(self::WOOCOMMERCE_VERSION) );
     }

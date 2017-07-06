@@ -98,17 +98,11 @@ class LocaleNumbers
      */
     public function getLocaleDecimalSeparator($separator)
     {
+	    $locale   = localeconv();
         $retval = $separator;
         //don't touch values on admin screens, save as plain number using woo defaults
         if ( (! is_admin()) || isset($_REQUEST['get_product_price_by_ajax']) ){
-            $locale = pll_current_language('locale');
-            $a = new \NumberFormatter($locale, \NumberFormatter::DECIMAL);
-            if ($a){
-                $locale_result = $a->getSymbol(\NumberFormatter::DECIMAL_SEPARATOR_SYMBOL);
-                if ($locale_result){
-                    $retval = $locale_result;
-                }
-            }
+            $retval = $locale['decimal_point'];
         }
         return $retval;
     }
@@ -122,13 +116,11 @@ class LocaleNumbers
      */
     public function getLocaleThousandSeparator($separator)
     {
+	    $locale   = localeconv();
         $retval = $separator;
         //don't touch values on admin screens, save as plain number using woo defaults
         if (! is_admin()){
-            $a = new \NumberFormatter(pll_current_language('locale'), \NumberFormatter::DECIMAL);
-            if ($a){
-                $retval = $a->getSymbol(\NumberFormatter::GROUPING_SEPARATOR_SYMBOL);
-            }
+	        $retval = $locale['thousands_sep'];
         }
         return $retval;
     }    

@@ -231,6 +231,11 @@ final class Utilities
         }
 
         $data = get_plugin_data(ABSPATH . 'wp-content/plugins/polylang/polylang.php', false, false);
+        
+        // Check if is polylang pro
+        if($data['Version'] === '') {
+	        $data = get_plugin_data(ABSPATH . 'wp-content/plugins/polylang-pro/polylang.php', false, false);
+        }
 
         if (version_compare($data['Version'], $version, '>=')) {
             return true;
